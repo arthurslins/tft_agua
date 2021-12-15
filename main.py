@@ -7,12 +7,12 @@ import requests
 from IPython.display import HTML
 import datetime as datetime
 
-st.sidebar.header("Tft Helper")
+st.sidebar.header("Tft Água")
 st.sidebar.image("https://i2.wp.com/gamehall.com.br/wp-content/uploads/2020/03/teamfight-tactics.jpg?fit=1920%2C1080&ssl=1", use_column_width=True)
 
 pd.set_option('display.max_colwidth', -1)
 
-st.header ("Team fight tatics helper")
+st.header ("Team fight tatics Água")
 info= st.checkbox("Informações")
 if info:
     st.write("Esse aplicativo ainda esta em construção, mas algumas pessoas me pediram e resolvi dar uma adiantada para poder usado.")

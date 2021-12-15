@@ -120,6 +120,7 @@ def main ():
         cols=["Nick", "League Points Diários", "Partidas Diárias", "League Points", "Jogos Totais","lolchess", "mobalytics"]
         parcial = parcial[cols] 
         parcial.rename(columns={"Jogos Totais": "Partidas Totais"},inplace=True)  
+        parcial = df.astype(float)
         
         
         st.write(parcial,unsafe_allow_html=True)

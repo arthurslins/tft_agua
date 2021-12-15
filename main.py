@@ -1,0 +1,165 @@
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+import json
+import requests
+from IPython.display import HTML
+import datetime as datetime
+
+st.sidebar.header("Tft Helper")
+st.sidebar.image("https://i2.wp.com/gamehall.com.br/wp-content/uploads/2020/03/teamfight-tactics.jpg?fit=1920%2C1080&ssl=1", use_column_width=True)
+
+pd.set_option('display.max_colwidth', -1)
+st.header ("Team fight tatics helper")
+st.write("Esse aplicativo ainda esta em construção, mas algumas pessoas me pediram e resolvi dar uma adiantada para poder usado.")
+def make_clickable(val):
+    return f'<a href="{val}">{val}</a>'
+
+def main ():
+    lista_server=["BR1","EUW1","JP1","KR","NA1"]
+
+    server = st.selectbox(
+        'Escolha um server?',
+        lista_server)
+    result=''.join([i for i in server if not i.isdigit()])
+
+    def criar(server):
+            
+        server = server
+        lista_chaa=requests.get(f"https://{server}.api.riotgames.com/tft/league/v1/challenger?api_key=RGAPI-68951cc5-0345-4a6e-af85-d9e541ec159c").json()
+        lista_gm=requests.get(f"https://{server}.api.riotgames.com/tft/league/v1/grandmaster?api_key=RGAPI-68951cc5-0345-4a6e-af85-d9e541ec159c").json()
+
+        nick=[]
+        for i in range(len(lista_chaa["entries"])):
+            nick.append(lista_chaa['entries'][i]["summonerName"])
+
+        lp=[]
+        for i in range(len(lista_chaa["entries"])):
+            lp.append(lista_chaa['entries'][i]["leaguePoints"])
+            
+        games=[]
+        for i in range(len(lista_chaa["entries"])):
+            games.append(lista_chaa["entries"][i]["wins"]+lista_chaa["entries"][i]["losses"])
+
+        df=pd.DataFrame(lp,nick).reset_index().rename(columns={"index":"Nick",0:"League Points"})
+        df["Jogos Diários"]=0
+        df["Jogos"] = games
+        df=df.sort_values("League Points",ascending=False).reset_index(drop=True)  
+        nick=[]
+
+        for i in range(len(lista_gm["entries"])):
+            
+            nick.append(lista_gm['entries'][i]["summonerName"])
+        lp=[]
+        for i in range(len(lista_gm["entries"])):
+            lp.append(lista_gm['entries'][i]["leaguePoints"])
+            
+        games=[]
+        for i in range(len(lista_gm["entries"])):
+            games.append(lista_gm["entries"][i]["wins"]+lista_gm["entries"][i]["losses"])
+
+        df1=pd.DataFrame(lp,nick).reset_index().rename(columns={"index":"Nick",0:"League Points"})
+        df1["Jogos Diários"]=0
+        df1["Jogos"] = games
+        df1=df1.sort_values("League Points",ascending=False).reset_index(drop=True)
+        dff=df.append(df1).reset_index(drop=True)
+        dff.dropna(inplace=True)
+        # dff.to_csv(f"dia_ant{server}.csv",index=False)
+     
+            
+        return dff
+
+    def day(server):
+        # for server in lista_server:
+        dfo=criar(server)
+        dia_ant = pd.read_csv(f"dia_ant{server}.csv")
+        # dia_ant.index += 1
+        df=dfo.merge(dia_ant,how="left",on="Nick")
+        parcial=pd.DataFrame()
+        parcial["Nick"]=df["Nick"]
+        parcial["League Points"]=df["League Points_x"]
+        parcial["Jogos Totais"]=df["Jogos_x"]
+        parcial["League Points Diários"]=df["League Points_x"]-df["League Points_y"]
+        parcial["Partidas Diárias"]=df["Jogos_x"]-df["Jogos_y"]
+        parcial=parcial.sort_values("League Points Diários",ascending=False).reset_index(drop=True)
+        parcial.sort_values(['League Points Diários', 'League Points'], ascending=[False, False], inplace=True)
+        # parcial.index += 1
+
+        parcial.to_csv(f"parcial{server}.csv")
+            
+        
+    
+        return parcial,dfo
+
+    parcial,dfo = day(server)
+
+
+    if st.button("Calcular lps diários"):
+        
+
+        parcial["Posição"]=np.arange(parcial.shape[0])
+        parcial.set_index(parcial["Posição"],inplace=True)
+        parcial.drop("Posição",axis=1,inplace=True)
+        lolchess=[]
+        moba=[]
+        for nick in parcial.Nick:
+            lolchess.append(f"https://lolchess.gg/profile/{result}/{nick}")
+            moba.append(f"https://app.mobalytics.gg/pt_br/tft/profile/{result}/{nick}/overview")
+        parcial["lolchess"]=lolchess
+        parcial["mobalytics"]=moba
+        cols=["Nick", "League Points Diários", "Partidas Diárias", "League Points", "Jogos Totais","lolchess", "mobalytics"]
+        parcial = parcial[cols] 
+        parcial.rename(columns={"Jogos Totais": "Partidas Totais"},inplace=True)  
+        
+        
+        st.write(parcial,unsafe_allow_html=True)
+
+    def troca(dfo):
+        dia_ant=dfo
+        dia_ant = dia_ant.to_csv(f"dia_ant{server}.csv")
+
+
+        return
+
+    
+    
+    # t =  datetime.time(15,56,05)
+    # st.write('O dia irá se atualizar na hora:', t)
+    # now = datetime.datetime.now()
+
+    # current_time = now.strftime("%H:%M:%S")
+    # st.write("Current Time =", current_time)
+    
+    # txt = st.text_area("")
+    
+    if st.button("Atualizar o dia"):
+        senha=st.text_input("Insira a senha")
+        if senha == "12345":
+            troca(dfo)
+    else:
+        pass
+
+    
+
+
+
+main()
+
+
+
+# if __name__ == "__main__":
+#      main()
+
+
+# import schedule
+# import time
+# hora = st.text_input("Insira um horario")
+# parcial = schedule.every().day.at(hora).do(day(server))
+# st.write(parcial)
+
+
+
+# while 1:
+#     schedule.run_pending()
+#     time.sleep(1)

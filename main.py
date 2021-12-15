@@ -121,6 +121,7 @@ def main ():
         parcial = parcial[cols] 
         parcial.rename(columns={"Jogos Totais": "Partidas Totais"},inplace=True)  
 #         parcial["League Points Diários"] = parcial["League Points Diários"].astype(int)
+        parcial=parcial.dropna()
         parcial["League Points Diários"]=parcial["League Points Diários"].astype(int)
         parcial["Partidas Diárias"]=parcial["Partidas Diárias"].astype(int)
         parcial["League Points"]=parcial["League Points"].astype(int)

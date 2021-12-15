@@ -120,7 +120,7 @@ def main ():
         cols=["Nick", "League Points Diários", "Partidas Diárias", "League Points", "Jogos Totais","lolchess", "mobalytics"]
         parcial = parcial[cols] 
         parcial.rename(columns={"Jogos Totais": "Partidas Totais"},inplace=True)  
-        parcial["League Points Diários"] = parcial["League Points Diários"].astype(float)
+        parcial["League Points Diários"] = parcial["League Points Diários"].astype(int)
         
         
         st.write(parcial,unsafe_allow_html=True)

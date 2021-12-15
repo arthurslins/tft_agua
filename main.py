@@ -11,8 +11,17 @@ st.sidebar.header("Tft Helper")
 st.sidebar.image("https://i2.wp.com/gamehall.com.br/wp-content/uploads/2020/03/teamfight-tactics.jpg?fit=1920%2C1080&ssl=1", use_column_width=True)
 
 pd.set_option('display.max_colwidth', -1)
+
 st.header ("Team fight tatics helper")
-st.write("Esse aplicativo ainda esta em construção, mas algumas pessoas me pediram e resolvi dar uma adiantada para poder usado.")
+info= st.checkbox("Informações")
+if info:
+    st.write("Esse aplicativo ainda esta em construção, mas algumas pessoas me pediram e resolvi dar uma adiantada para poder usado.")
+    st.write("Atualmente ele esta contando os jogos e pontuação diária com links do lolchesse mobalytics de todos os players que estiverem no Chall/GM no dia anterior")
+    st.write("Cada dia as 24hrs as tabelas serão resetadas e começara a mesma conta assim por diante.")
+    st.write("Para o futuro eu quero organizar melhor e deixar com um design melhor e adicionar uma parte onde irá ter uma tabela dos snapshots em tempo real")
+    st.write("Eu nunca tinha feito um programa para outras pessoas usarem, então não sei o quanto esse servidor gratuito que hospedei aguenta de acessos simulâneos")
+    st.write("Então, estou disponibilizando como um teste e com o tempo vou vendo o que da para fazer em relação a isso, se houve algum problema")
+    st.write("De resto, espero que isso seja útil de alguma forma, e qualquer feedback só mandar um dm no twitter")
 def make_clickable(val):
     return f'<a href="{val}">{val}</a>'
 
@@ -132,13 +141,26 @@ def main ():
     # st.write("Current Time =", current_time)
     
     # txt = st.text_area("")
+ 
+ 
     
-    if st.button("Atualizar o dia"):
-        senha=st.text_input("Insira a senha")
-        if senha == "12345":
-            troca(dfo)
-    else:
-        pass
+    senha= st.sidebar.text_input("Insira a senha de Admin para atualizar o dia")
+    st.write(senha)
+       
+    if senha == "12345":
+        if st.button("Atualizar o dia"):
+            troca(dfo)   
+    # if st.button("Atualizar o dia"):
+    #     senha= st.number_input("Insira a senha")
+    #     st.write(senha)
+       
+    #     # if senha == "atua":
+    #     #     troca(dfo)
+    #     #     st.write("Dia Atualizado")
+        
+    #     # else:
+    #     #     st.write("Senha inválida")
+    #     # pass
 
     
 

@@ -9,7 +9,7 @@ import datetime as datetime
 
 st.sidebar.header("Tft Água")
 st.sidebar.image("https://i2.wp.com/gamehall.com.br/wp-content/uploads/2020/03/teamfight-tactics.jpg?fit=1920%2C1080&ssl=1", use_column_width=True)
-
+pesquisa = st.sidebar.text_input("Coloque um nick para pesquisa")
 pd.set_option('display.max_colwidth', -1)
 
 st.header ("Team fight tatics Água")
@@ -126,6 +126,7 @@ def main ():
         parcial["Partidas Diárias"]=parcial["Partidas Diárias"].astype(int)
         parcial["League Points"]=parcial["League Points"].astype(int)
         parcial["Partidas Totais"]=parcial["Partidas Totais"].astype(int)
+        st.write(parcial[parcial["Nick"]==pesquisa])
         
         st.write(parcial,unsafe_allow_html=True)
 

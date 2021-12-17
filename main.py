@@ -129,6 +129,7 @@ def main ():
         parcial["Partidas Diárias"]=parcial["Partidas Diárias"].astype(int)
         parcial["League Points"]=parcial["League Points"].astype(int)
         parcial["Partidas Totais"]=parcial["Partidas Totais"].astype(int)
+        parcial.index=+1
         st.write(parcial[parcial["Nick"]==pesquisa])
         
         st.write(parcial,unsafe_allow_html=True)

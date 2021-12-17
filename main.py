@@ -14,6 +14,7 @@ pd.set_option('display.max_colwidth', -1)
 
 st.header ("Team fight tatics Água")
 info= st.checkbox("Informações")
+
 if info:
     st.write("Esse aplicativo ainda esta em construção, mas algumas pessoas me pediram e resolvi dar uma adiantada para poder usado.")
     st.write("Atualmente ele esta contando os jogos e pontuação diária com links do lolchesse mobalytics de todos os players que estiverem no Chall/GM no dia anterior")
@@ -22,6 +23,8 @@ if info:
     st.write("Eu nunca tinha feito um programa para outras pessoas usarem, então não sei o quanto esse servidor gratuito que hospedei aguenta de acessos simulâneos")
     st.write("Então, estou disponibilizando como um teste e com o tempo vou vendo o que da para fazer em relação a isso, se houve algum problema")
     st.write("De resto, espero que isso seja útil de alguma forma, e qualquer feedback só mandar um dm no twitter")
+    
+    
 def make_clickable(val):
     return f'<a href="{val}">{val}</a>'
 
@@ -138,7 +141,44 @@ def main ():
         return
 
     
-    
+    snap= st.checkbox("Snapshots")
+    if snap:
+        snap=pd.DataFrame()
+        snap["Nick"]=parcial["Nick"]
+        snap["League Points"]= parcial["League Points"]
+        snap.sort_values(by="League Points",inplace=True,ascending=False)
+        
+        
+        snap.index+=1
+        snap=snap.reset_index(drop=True)
+        snap.loc[1,"Ciclo 1"]=100
+        snap.loc[2,"Ciclo 1"]=90
+        snap.loc[3,"Ciclo 1"]=80
+        snap.loc[4,"Ciclo 1"]=70
+        snap.loc[5,"Ciclo 1"]=60
+        snap.loc[6,"Ciclo 1"]=55
+        snap.loc[7,"Ciclo 1"]=50
+        snap.loc[8,"Ciclo 1"]=45
+        snap.loc[9:25,"Ciclo 1"]=35
+        snap.loc[26:50,"Ciclo 1"]=25
+        snap.loc[51:100,"Ciclo 1"]=15
+        snap.loc[101:150,"Ciclo 1"]=5
+#         snap["Ciclo 2"]=0
+#         snap["Ciclo 3"]=0
+#         snap["Ciclo 4"]=0
+#         snap["Ciclo 5"]=0
+#         snap["Ciclo 6"]=0
+        
+        snap["Quantidade de jogos no ciclo"] = 0
+        
+        snap["Soma dos pontos do snap"]=0
+        snap["Ciclo 1"].fillna(0,inplace=True)
+        snap=snap.dropna()
+        snap.loc[:,"League Points":"Soma dos pontos do snap"]=snap.loc[:,"League Points":"Soma dos pontos do snap"].astype(int)
+        snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
+        snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
+        
+        st.write(snap)
     # t =  datetime.time(15,56,05)
     # st.write('O dia irá se atualizar na hora:', t)
     # now = datetime.datetime.now()

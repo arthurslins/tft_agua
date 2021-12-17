@@ -179,6 +179,7 @@ def main ():
         snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
         snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
         
+        st.write(snap[snap["Nick"]==pesquisa])
         st.write(snap)
     # t =  datetime.time(15,56,05)
     # st.write('O dia irá se atualizar na hora:', t)

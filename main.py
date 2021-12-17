@@ -149,8 +149,9 @@ def main ():
         snap.sort_values(by="League Points",inplace=True,ascending=False)
         
         
-        snap.index+=1
+        
         snap=snap.reset_index(drop=True)
+        snap.index+=1
         snap.loc[1,"Ciclo 1"]=100
         snap.loc[2,"Ciclo 1"]=90
         snap.loc[3,"Ciclo 1"]=80

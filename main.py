@@ -210,7 +210,7 @@ def main ():
             st.session_state.count=0  
             now = datetime.now(tz=tz)
             dt_string = now.strftime("%H:%M:%S")
-            st.write("Horário do ultimo reset diário",dt_string)   
+            st.sidebar.write("Horário do ultimo reset diário",dt_string)   
     # if st.button("Atualizar o dia"):
     #     senha= st.number_input("Insira a senha")
     #     st.write(senha)

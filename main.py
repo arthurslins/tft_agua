@@ -229,7 +229,7 @@ def main ():
 if __name__ == "__main__":
 
     main()
-    st.sidebar.write('Quantas vezes foi utilizado = ', st.session_state.count)
+    st.sidebar.write('Quantas vezes foi utilizado o app no dia = ', st.session_state.count)
 
 
 # import schedule

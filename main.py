@@ -7,6 +7,11 @@ import requests
 from IPython.display import HTML
 import datetime as datetime
 
+if 'count' not in st.session_state:
+        st.session_state.count = 0
+def increment_counter(increment_value=0):
+    st.session_state.count += increment_value
+
 st.sidebar.header("Tft Água")
 st.sidebar.image("https://i2.wp.com/gamehall.com.br/wp-content/uploads/2020/03/teamfight-tactics.jpg?fit=1920%2C1080&ssl=1", use_column_width=True)
 pesquisa = st.sidebar.text_input("Coloque um nick para pesquisa")
@@ -25,8 +30,8 @@ if info:
     st.write("De resto, espero que isso seja útil de alguma forma, e qualquer feedback só mandar um dm no twitter")
     
     
-def make_clickable(val):
-    return f'<a href="{val}">{val}</a>'
+# def make_clickable(val):
+#     return f'<a href="{val}">{val}</a>'
 
 def main ():
     lista_server=["BR1","EUW1","JP1","KR","NA1"]
@@ -107,7 +112,7 @@ def main ():
     parcial,dfo = day(server)
 
 
-    if st.button("Calcular lps diários"):
+    if st.button("Calcular lps diários",on_click=increment_counter,kwargs=dict(increment_value=1)):
         
 
         parcial["Posição"]=np.arange(parcial.shape[0])
@@ -198,7 +203,9 @@ def main ():
        
     if senha == "12345":
         if st.button("Atualizar o dia"):
-            troca(dfo)   
+            troca(dfo) 
+            st.session_state.count=0  
+            
     # if st.button("Atualizar o dia"):
     #     senha= st.number_input("Insira a senha")
     #     st.write(senha)
@@ -215,12 +222,14 @@ def main ():
 
 
 
-main()
+# main()
 
 
 
-# if __name__ == "__main__":
-#      main()
+if __name__ == "__main__":
+
+    main()
+    st.write('Quantas vezes foi utilizado = ', st.session_state.count)
 
 
 # import schedule

@@ -7,6 +7,8 @@ import requests
 from IPython.display import HTML
 import datetime as datetime
 from datetime import datetime
+import pytz
+tz = pytz.timezone("Brazil/East")
 
 if 'count' not in st.session_state:
         st.session_state.count = 0
@@ -206,9 +208,9 @@ def main ():
         if st.button("Atualizar o dia"):
             troca(dfo) 
             st.session_state.count=0  
-            now = datetime.now()
+            now = datetime.now(tz=tz)
             dt_string = now.strftime("%H:%M:%S")
-            st.sidebar.write("Horário do ultimo reset diário",dt_string) 
+            st.write("Horário do ultimo reset diário",dt_string)   
     # if st.button("Atualizar o dia"):
     #     senha= st.number_input("Insira a senha")
     #     st.write(senha)

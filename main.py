@@ -165,63 +165,63 @@ def main ():
  
     
     snapi= st.checkbox("Snapshots")
-#     try:
-    if snapi:
-            snap=pd.read_csv("snap1.csv")
-            # snap["Nick"]=parcial["Nick"]
-            # snap["League Points"]= parcial["League Points"]
-            snap.sort_values(by="League Points",inplace=True,ascending=False)
+    try:
+            if snapi:
+                    snap=pd.read_csv("snap1.csv")
+                    # snap["Nick"]=parcial["Nick"]
+                    # snap["League Points"]= parcial["League Points"]
+                    snap.sort_values(by="League Points",inplace=True,ascending=False)
 
 
 
-            snap=snap.reset_index(drop=True)
-            snap.index+=1
-            snap.loc[1,"Ciclo 2"]=110
-            snap.loc[2,"Ciclo 2"]=99
-            snap.loc[3,"Ciclo 2"]=88
-            snap.loc[4,"Ciclo 2"]=77
-            snap.loc[5,"Ciclo 2"]=66
-            snap.loc[6,"Ciclo 2"]=60
-            snap.loc[7,"Ciclo 2"]=55
-            snap.loc[8,"Ciclo 2"]=50
-            snap.loc[9:25,"Ciclo 2"]=39
-            snap.loc[26:50,"Ciclo 2"]=28
-            snap.loc[51:100,"Ciclo 2"]=17
-            snap.loc[101:150,"Ciclo 2"]=6
-        #         snap["Ciclo 2"]=0
-        #         snap["Ciclo 3"]=0
-        #         snap["Ciclo 4"]=0
-        #         snap["Ciclo 5"]=0
-        #         snap["Ciclo 6"]=0
+                    snap=snap.reset_index(drop=True)
+                    snap.index+=1
+                    snap.loc[1,"Ciclo 2"]=110
+                    snap.loc[2,"Ciclo 2"]=99
+                    snap.loc[3,"Ciclo 2"]=88
+                    snap.loc[4,"Ciclo 2"]=77
+                    snap.loc[5,"Ciclo 2"]=66
+                    snap.loc[6,"Ciclo 2"]=60
+                    snap.loc[7,"Ciclo 2"]=55
+                    snap.loc[8,"Ciclo 2"]=50
+                    snap.loc[9:25,"Ciclo 2"]=39
+                    snap.loc[26:50,"Ciclo 2"]=28
+                    snap.loc[51:100,"Ciclo 2"]=17
+                    snap.loc[101:150,"Ciclo 2"]=6
+                #         snap["Ciclo 2"]=0
+                #         snap["Ciclo 3"]=0
+                #         snap["Ciclo 4"]=0
+                #         snap["Ciclo 5"]=0
+                #         snap["Ciclo 6"]=0
 
-            snap["Quantidade de jogos no ciclo"] = parcial["Partidas Totais"]-snap["Partidas Totais"]
+                    snap["Quantidade de jogos no ciclo"] = parcial["Partidas Totais"]-snap["Partidas Totais"]
 
-            # snap["Soma dos pontos do snap"]=0
-            snap["Ciclo 1"].fillna(0,inplace=True)
-            snap["Ciclo 2"].fillna(0,inplace=True)
-            snap=snap.dropna()
-            snap.loc[:,"League Points":"Soma dos pontos do snap"]=snap.loc[:,"League Points":"Soma dos pontos do snap"].astype(int)
-            # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
-            # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
+                    # snap["Soma dos pontos do snap"]=0
+                    snap["Ciclo 1"].fillna(0,inplace=True)
+                    snap["Ciclo 2"].fillna(0,inplace=True)
+                    snap=snap.dropna()
+                    snap.loc[:,"League Points":"Soma dos pontos do snap"]=snap.loc[:,"League Points":"Soma dos pontos do snap"].astype(int)
+                    # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
+                    # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
 
-            parcial1=pd.DataFrame(parcial)
-            parcial1.sort_values(by="League Points",ascending=False,inplace=True)
-            parcial1.reset_index(drop=True,inplace=True)
-            snap.reset_index(drop=True)
-            snap=snap.merge(parcial,how="left",on="Nick")
-            # snap=snap[["Nick","League Points_x","Ciclo 1","Quantidade de jogos no ciclo","Soma dos pontos do snap","Jogos Totais_x","Jogos Totais_y"]]
-            snap["Quantidade de jogos no ciclo"]=abs(snap["Partidas Totais_x"]-snap["Partidas Totais_y"])
-            snap=snap[["Nick","League Points_x","Ciclo 1","Ciclo 2","Quantidade de jogos no ciclo"]]
-            snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=0)
-            snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=1)
-            snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
-            snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
-            
-            st.write(snap[snap["Nick"]==pesquisa])
-            st.write(snap)
+                    parcial1=pd.DataFrame(parcial)
+                    parcial1.sort_values(by="League Points",ascending=False,inplace=True)
+                    parcial1.reset_index(drop=True,inplace=True)
+                    snap.reset_index(drop=True)
+                    snap=snap.merge(parcial,how="left",on="Nick")
+                    # snap=snap[["Nick","League Points_x","Ciclo 1","Quantidade de jogos no ciclo","Soma dos pontos do snap","Jogos Totais_x","Jogos Totais_y"]]
+                    snap["Quantidade de jogos no ciclo"]=abs(snap["Partidas Totais_x"]-snap["Partidas Totais_y"])
+                    snap=snap[["Nick","League Points_x","Ciclo 1","Ciclo 2","Quantidade de jogos no ciclo"]]
+                    snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=0)
+                    snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=1)
+                    snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
+                    snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
 
-#     except:
-#         pass
+                    st.write(snap[snap["Nick"]==pesquisa])
+                    st.write(snap)
+
+    except:
+        pass
     senha= st.sidebar.text_input("Insira a senha de Admin para atualizar o dia")
     st.write(senha)   
     if senha == "12345":

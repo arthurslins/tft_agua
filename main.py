@@ -219,6 +219,7 @@ def main ():
                     snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
                     snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
                     snap.index+=1
+                    snap.rename(columns={"League Points_x" : "League Points"},inplace=True)
                 
                                
 

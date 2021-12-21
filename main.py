@@ -216,7 +216,7 @@ def main ():
             snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=1)
             snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
             snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
-            snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
+#             snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
             st.write(snap[snap["Nick"]==pesquisa])
             st.write(snap)
 

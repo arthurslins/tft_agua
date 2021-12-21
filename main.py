@@ -210,13 +210,13 @@ def main ():
             snap.reset_index(drop=True)
             snap=snap.merge(parcial,how="left",on="Nick")
             # snap=snap[["Nick","League Points_x","Ciclo 1","Quantidade de jogos no ciclo","Soma dos pontos do snap","Jogos Totais_x","Jogos Totais_y"]]
-            snap["Quantidade de jogos no ciclo"]=int(abs(snap["Partidas Totais_x"]-snap["Partidas Totais_y"]))
+            snap["Quantidade de jogos no ciclo"]=abs(snap["Partidas Totais_x"]-snap["Partidas Totais_y"])
             snap=snap[["Nick","League Points_x","Ciclo 1","Ciclo 2","Quantidade de jogos no ciclo"]]
             snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=0)
             snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=1)
             snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
             snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
-#             snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
+            snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(float)
             st.write(snap[snap["Nick"]==pesquisa])
             st.write(snap)
 

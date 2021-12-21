@@ -217,6 +217,7 @@ def main ():
                     snap=snap.dropna()
                     snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
                     snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
+                    snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
                 
 
                     st.write(snap[snap["Nick"]==pesquisa])

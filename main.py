@@ -165,15 +165,15 @@ def main ():
  
     
     snapi= st.checkbox("Snapshots")
-    try:
+#     try:
         if snapi:
             snap=pd.read_csv("snap1.csv")
             # snap["Nick"]=parcial["Nick"]
             # snap["League Points"]= parcial["League Points"]
             snap.sort_values(by="League Points",inplace=True,ascending=False)
-            
-            
-            
+
+
+
             snap=snap.reset_index(drop=True)
             snap.index+=1
             snap.loc[1,"Ciclo 2"]=110
@@ -193,9 +193,9 @@ def main ():
         #         snap["Ciclo 4"]=0
         #         snap["Ciclo 5"]=0
         #         snap["Ciclo 6"]=0
-            
+
             snap["Quantidade de jogos no ciclo"] = parcial["Partidas Totais"]-snap["Partidas Totais"]
-            
+
             # snap["Soma dos pontos do snap"]=0
             snap["Ciclo 1"].fillna(0,inplace=True)
             snap["Ciclo 2"].fillna(0,inplace=True)
@@ -203,7 +203,7 @@ def main ():
             snap.loc[:,"League Points":"Soma dos pontos do snap"]=snap.loc[:,"League Points":"Soma dos pontos do snap"].astype(int)
             # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
             # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
-            
+
             parcial1=pd.DataFrame(parcial)
             parcial1.sort_values(by="League Points",ascending=False,inplace=True)
             parcial1.reset_index(drop=True,inplace=True)
@@ -216,12 +216,12 @@ def main ():
             snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -1].sum(axis=1)
             snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
             snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
-            snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(float)
+            snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
             st.write(snap[snap["Nick"]==pesquisa])
             st.write(snap)
 
-    except:
-        pass
+#     except:
+#         pass
     senha= st.sidebar.text_input("Insira a senha de Admin para atualizar o dia")
     st.write(senha)   
     if senha == "12345":

@@ -164,7 +164,7 @@ def main ():
     # txt = st.text_area("")
  
     
-    snapi= st.checkbox("Snapshots")
+#     snapi= st.checkbox("Snapshots")
     try:
             if snapi:
                     snap=pd.read_csv("snap1.csv")

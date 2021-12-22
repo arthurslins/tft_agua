@@ -165,6 +165,16 @@ def main ():
 
                 snap=snap.reset_index(drop=True)
                 snap.index+=1
+                snap.loc[1,"Ciclo 2"]=110
+                snap.loc[2,"Ciclo 2"]=99
+                snap.loc[3,"Ciclo 2"]=88
+                snap.loc[4,"Ciclo 2"]=77
+                snap.loc[5,"Ciclo 2"]=66
+                snap.loc[6,"Ciclo 2"]=60
+                snap.loc[7,"Ciclo 2"]=55
+                snap.loc[8,"Ciclo 2"]=50
+                snap.loc[9:25,"Ciclo 2"]=39
+                snap.loc[26:50,"Ciclo 2"]=28
 
                 #         snap["Ciclo 2"]=0
                 #         snap["Ciclo 3"]=0

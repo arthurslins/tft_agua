@@ -166,7 +166,7 @@ def main ():
     
 #     snapi= st.checkbox("Snapshots")
     try:
-            if snapi:
+#             if snapi:
                     snap=pd.read_csv("snap1.csv")
                     # snap["Nick"]=parcial["Nick"]
                     # snap["League Points"]= parcial["League Points"]

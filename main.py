@@ -204,11 +204,11 @@ def main ():
                     # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
                     # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
 
-                    parcial1=pd.DataFrame(parcial)
-                    parcial1.sort_values(by="League Points",ascending=False,inplace=True)
-                    parcial1.reset_index(drop=True,inplace=True)
+#                     parcial1=pd.DataFrame(parcial)
+                    parcial.sort_values(by="League Points",ascending=False,inplace=True)
+                    parcial.reset_index(drop=True,inplace=True)
                     snap.reset_index(drop=True)
-                    snap=snap.merge(parcial1,how="left",on="Nick")
+                    snap=snap.merge(parcial,how="left",on="Nick")
                     # snap=snap[["Nick","League Points_x","Ciclo 1","Quantidade de jogos no ciclo","Soma dos pontos do snap","Jogos Totais_x","Jogos Totais_y"]]
                     snap["Quantidade de jogos no ciclo"]=abs(snap["Partidas Totais_x"]-snap["Partidas Totais_y"])
                     snap=snap[["Nick","League Points_x","Ciclo 1","Ciclo 2","Quantidade de jogos no ciclo"]]

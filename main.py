@@ -211,6 +211,7 @@ def main ():
                 snap.index+=1
                 snap.rename(columns={"League Points_y" : "League Points"},inplace=True)
                 snap.sort_values(by="League Points", ascending = False,inplace=True)
+                snap=snap.reset_index(drop=True)
 
 
 

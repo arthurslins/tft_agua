@@ -210,6 +210,10 @@ def main ():
                 snap["League Points_y"]=snap["League Points_y"].astype(int)
                 snap.index+=1
                 snap.rename(columns={"League Points_y" : "League Points"},inplace=True)
+
+                snap.sort_values(by="League Points", ascending = False,inplace=True)
+                snap=snap.reset_index(drop=True)
+                snap.index+=1
                 snap.loc[1,"Ciclo 2"]=110
                 snap.loc[2,"Ciclo 2"]=99
                 snap.loc[3,"Ciclo 2"]=88
@@ -222,9 +226,6 @@ def main ():
                 snap.loc[26:50,"Ciclo 2"]=28
                 snap.loc[51:100,"Ciclo 2"]=17
                 snap.loc[101:150,"Ciclo 2"]=6
-                snap.sort_values(by="League Points", ascending = False,inplace=True)
-                snap=snap.reset_index(drop=True)
-                snap.index+=1
 
 
                 st.write(snap[snap["Nick"]==pesquisa])

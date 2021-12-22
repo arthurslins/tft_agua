@@ -217,7 +217,7 @@ def main ():
                 st.write(snap[snap["Nick"]==pesquisa])
                 st.write(snap)
 
-     except:
+    except:
         pass
 
     # t =  datetime.time(15,56,05)

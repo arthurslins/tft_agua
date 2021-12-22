@@ -212,7 +212,7 @@ def main ():
                 snap.rename(columns={"League Points_y" : "League Points"},inplace=True)
                 snap.sort_values(by="League Points", ascending = False,inplace=True)
                 snap=snap.reset_index(drop=True)
-
+                snap.index+=1
 
 
                 st.write(snap[snap["Nick"]==pesquisa])

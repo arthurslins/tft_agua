@@ -143,29 +143,7 @@ def main ():
         st.write(parcial[parcial["Nick"]==pesquisa])
         
         st.write(parcial,unsafe_allow_html=True)
-        
-
-    def troca(dfo):
-        dia_ant=dfo
-        dia_ant = dia_ant.to_csv(f"dia_ant{server}.csv")
-
-
-        return
-
-    
-
-    # t =  datetime.time(15,56,05)
-    # st.write('O dia irá se atualizar na hora:', t)
-    # now = datetime.datetime.now()
-
-    # current_time = now.strftime("%H:%M:%S")
-    # st.write("Current Time =", current_time)
-    
-    # txt = st.text_area("")
- 
-    
-#     snapi= st.checkbox("Snapshots")
-    try:
+        try:
 #             if snapi:
                     snap=pd.read_csv("snap1.csv")
                     # snap["Nick"]=parcial["Nick"]
@@ -228,6 +206,28 @@ def main ():
 
     except:
         pass
+
+    def troca(dfo):
+        dia_ant=dfo
+        dia_ant = dia_ant.to_csv(f"dia_ant{server}.csv")
+
+
+        return
+
+    
+
+    # t =  datetime.time(15,56,05)
+    # st.write('O dia irá se atualizar na hora:', t)
+    # now = datetime.datetime.now()
+
+    # current_time = now.strftime("%H:%M:%S")
+    # st.write("Current Time =", current_time)
+    
+    # txt = st.text_area("")
+ 
+    
+#     snapi= st.checkbox("Snapshots")
+    
     senha= st.sidebar.text_input("Insira a senha de Admin para atualizar o dia")
     st.write(senha)   
     if senha == "12345":

@@ -152,8 +152,10 @@ def main ():
 
         return
 
-       try:
-          if snapi:
+       
+    snapi= st.checkbox("Snapshots")
+    try:
+        if snapi:
                 snap=pd.read_csv("snap1.csv")
                     # snap["Nick"]=parcial["Nick"]
                     # snap["League Points"]= parcial["League Points"]
@@ -215,7 +217,7 @@ def main ():
                 st.write(snap[snap["Nick"]==pesquisa])
                 st.write(snap)
 
-       except:
+     except:
         pass
 
     # t =  datetime.time(15,56,05)

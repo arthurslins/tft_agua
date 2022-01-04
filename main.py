@@ -228,7 +228,7 @@ def main ():
                 snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
                 snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
                 snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
-                snap.sort_values(by="League Points", ascending = False,inplace=True)
+                snap.sort_values(by="Soma dos pontos do snap", ascending = False,inplace=True)
                 snap=snap.reset_index(drop=True)
                 snap.index+=1
 

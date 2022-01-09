@@ -132,13 +132,13 @@ def main ():
         parcial["mobalytics"]=moba
         cols=["Nick", "League Points Diários", "Partidas Diárias", "League Points", "Jogos Totais","lolchess", "mobalytics"]
         parcial = parcial[cols] 
-        parcial.rename(columns={"Jogos Totais": "Partidas Totais"},inplace=True)  
+        parcial.rename(columns={"Jogos Totais": "Jogos Totais"},inplace=True)  
 #         parcial["League Points Diários"] = parcial["League Points Diários"].astype(int)
         parcial=parcial.dropna()
         parcial["League Points Diários"]=parcial["League Points Diários"].astype(int)
         parcial["Partidas Diárias"]=parcial["Partidas Diárias"].astype(int)
         parcial["League Points"]=parcial["League Points"].astype(int)
-        parcial["Partidas Totais"]=parcial["Partidas Totais"].astype(int)
+        parcial["Jogos Totais"]=parcial["Jogos Totais"].astype(int)
         parcial.index+=1
         st.write(parcial[parcial["Nick"]==pesquisa])
         
@@ -154,89 +154,48 @@ def main ():
 
        
     snapi= st.checkbox("Snapshots")
-    try:
-        if snapi:
-                snap=pd.read_csv("snap1.csv")
-                    # snap["Nick"]=parcial["Nick"]
-                    # snap["League Points"]= parcial["League Points"]
-                snap.sort_values(by="League Points",inplace=True,ascending=False)
+    # try:
+    if snapi:
+            snap1=pd.read_csv("snap1.csv")
+            snap=pd.read_csv("snap2.csv")
+         
+            
+            snap=snap.drop(["League Points","Soma dos pontos do snap"],axis=1)
+            snap1=snap1.drop(["League Points","Soma dos pontos do snap","Partidas Totais"],axis=1)
+            snap=snap.merge(snap1,how="left",on="Nick")
+            column_names=["Nick","Ciclo 1","Ciclo 2","Partidas Totais"]
+            snap=snap.reindex(columns=column_names)
+            
+            parcial=parcial[["Nick","League Points","Jogos Totais"]]
+            snap=snap.merge(parcial,how="left",on="Nick")
+            snap["Partidas Totais no snap"]=snap["Jogos Totais"]-snap["Partidas Totais"]
+            snap=snap.fillna(0)
+            snap.iloc[:,1:]=snap.iloc[:,1:].astype(int)
+            snap.index=snap.index+1
+            snap.loc[1,"Ciclo 3"]=121
+            snap.loc[2,"Ciclo 3"]=109
+            snap.loc[3,"Ciclo 3"]=97
+            snap.loc[4,"Ciclo 3"]=85
+            snap.loc[5,"Ciclo 3"]=73
+            snap.loc[6,"Ciclo 3"]=66
+            snap.loc[7,"Ciclo 3"]=60
+            snap.loc[8,"Ciclo 3"]=54
+            snap.loc[9:25,"Ciclo 3"]=43
+            snap.loc[26:50,"Ciclo 3"]=31
+            snap.loc[51:100,"Ciclo 3"]=19
+            snap.loc[101:150,"Ciclo 3"]=7
+            snap["Soma dos pontos do snap"]= snap.loc[:,["Ciclo 1","Ciclo 2","Ciclo 3"]].sum(axis=1)
+            column_names=["Nick","Ciclo 1","Ciclo 2","Ciclo 3","Partidas Totais no snap","Soma dos pontos do snap"]
+            snap=snap.reindex(columns=column_names)
+            snap.iloc[:,1:]=snap.iloc[:,1:].astype(int)
+            snap.sort_values(by="Soma dos pontos do snap",ascending=False)
+            
 
+            st.write(snap[snap["Nick"]==pesquisa])
+            st.write(snap)
 
-
-                snap=snap.reset_index(drop=True)
-                snap.index+=1
-                snap.loc[1,"Ciclo 2"]=110
-                snap.loc[2,"Ciclo 2"]=99
-                snap.loc[3,"Ciclo 2"]=88
-                snap.loc[4,"Ciclo 2"]=77
-                snap.loc[5,"Ciclo 2"]=66
-                snap.loc[6,"Ciclo 2"]=60
-                snap.loc[7,"Ciclo 2"]=55
-                snap.loc[8,"Ciclo 2"]=50
-                snap.loc[9:25,"Ciclo 2"]=39
-                snap.loc[26:50,"Ciclo 2"]=28
-
-                #         snap["Ciclo 2"]=0
-                #         snap["Ciclo 3"]=0
-                #         snap["Ciclo 4"]=0
-                #         snap["Ciclo 5"]=0
-                #         snap["Ciclo 6"]=0
-
-                snap["Quantidade de jogos no ciclo"] = parcial["Partidas Totais"]-snap["Partidas Totais"]
-
-                # snap["Soma dos pontos do snap"]=0
-                snap["Ciclo 1"].fillna(0,inplace=True)
-                snap["Ciclo 2"].fillna(0,inplace=True)
-                snap=snap.dropna()
-                snap.loc[:,"League Points":"Soma dos pontos do snap"]=snap.loc[:,"League Points":"Soma dos pontos do snap"].astype(int)
-                # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
-                # snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
-
-                #                     parcial1=pd.DataFrame(parcial)
-                parcial.sort_values(by="League Points",ascending=False,inplace=True)
-                parcial.reset_index(drop=True,inplace=True)
-                snap.reset_index(drop=True)
-                snap=snap.merge(parcial,how="left",on="Nick")
-                # snap=snap[["Nick","League Points_x","Ciclo 1","Quantidade de jogos no ciclo","Soma dos pontos do snap","Jogos Totais_x","Jogos Totais_y"]]
-                snap["Quantidade de jogos no ciclo"]=abs(snap["Partidas Totais_x"]-snap["Partidas Totais_y"])
-                snap=snap[["Nick","League Points_y","Ciclo 1","Ciclo 2","Quantidade de jogos no ciclo"]]
-
-                snap=snap.dropna()
-
-                snap["Ciclo 2"]=snap["Ciclo 2"].astype(int)
-                
-                snap["Quantidade de jogos no ciclo"]=snap["Quantidade de jogos no ciclo"].astype(int)
-                snap["League Points_y"]=snap["League Points_y"].astype(int)
-                snap.index+=1
-                snap.rename(columns={"League Points_y" : "League Points"},inplace=True)
-
-                snap.sort_values(by="League Points", ascending = False,inplace=True)
-                snap=snap.reset_index(drop=True)
-                snap.index+=1
-                snap.loc[1,"Ciclo 2"]=110
-                snap.loc[2,"Ciclo 2"]=99
-                snap.loc[3,"Ciclo 2"]=88
-                snap.loc[4,"Ciclo 2"]=77
-                snap.loc[5,"Ciclo 2"]=66
-                snap.loc[6,"Ciclo 2"]=60
-                snap.loc[7,"Ciclo 2"]=55
-                snap.loc[8,"Ciclo 2"]=50
-                snap.loc[9:25,"Ciclo 2"]=39
-                snap.loc[26:50,"Ciclo 2"]=28
-                snap.loc[51:100,"Ciclo 2"]=17
-                snap.loc[101:150,"Ciclo 2"]=6
-                snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=0)
-                snap.loc[:,"Soma dos pontos do snap"] = snap.iloc[:,2: -2].sum(axis=1)
-                snap["Soma dos pontos do snap"]=snap["Soma dos pontos do snap"].astype(int)
-                snap.sort_values(by="Soma dos pontos do snap", ascending = False,inplace=True)
-                snap=snap.reset_index(drop=True)
-                snap.index+=1
-
-                st.write(snap[snap["Nick"]==pesquisa])
-                st.write(snap)
-
-    except:
-        pass
+    # except:
+    #     pass
 
     # t =  datetime.time(15,56,05)
     # st.write('O dia irá se atualizar na hora:', t)

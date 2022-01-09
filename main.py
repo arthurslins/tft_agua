@@ -156,7 +156,7 @@ def main ():
     snapi= st.checkbox("Snapshots")
     # try:
     if snapi:
-            snap1=pd.read_csv("snap1.csv")
+                        snap1=pd.read_csv("snap1.csv")
             snap=pd.read_csv("snap2.csv")
          
             
@@ -171,7 +171,11 @@ def main ():
             snap["Partidas Totais no snap"]=snap["Jogos Totais"]-snap["Partidas Totais"]
             snap=snap.fillna(0)
             snap.iloc[:,1:]=snap.iloc[:,1:].astype(int)
+            snap=snap.sort_values(by="League Points",ascending=False)
+            snap=snap.reset_index(drop=True)
             snap.index=snap.index+1
+            
+           
             snap.loc[1,"Ciclo 3"]=121
             snap.loc[2,"Ciclo 3"]=109
             snap.loc[3,"Ciclo 3"]=97
@@ -188,7 +192,10 @@ def main ():
             column_names=["Nick","Ciclo 1","Ciclo 2","Ciclo 3","Partidas Totais no snap","Soma dos pontos do snap"]
             snap=snap.reindex(columns=column_names)
             snap.iloc[:,1:]=snap.iloc[:,1:].astype(int)
-            snap.sort_values(by="Soma dos pontos do snap",ascending=False)
+            snap=snap.sort_values(by="Soma dos pontos do snap",ascending=False)
+            snap.reset_index(drop=True, inplace=True)
+            snap.index=snap.index+1
+            
             
 
             st.write(snap[snap["Nick"]==pesquisa])

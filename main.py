@@ -156,7 +156,7 @@ def main ():
     snapi= st.checkbox("Snapshots")
     # try:
     if snapi:
-                        snap1=pd.read_csv("snap1.csv")
+            snap1=pd.read_csv("snap1.csv")
             snap=pd.read_csv("snap2.csv")
          
             

@@ -154,55 +154,54 @@ def main ():
 
        
     snapi= st.checkbox("Snapshots")
-    # try:
-    if snapi:
-            snap1=pd.read_csv("snap1.csv")
-            snap=pd.read_csv("snap2.csv")
-         
-            
-            snap=snap.drop(["League Points","Soma dos pontos do snap"],axis=1)
-            snap1=snap1.drop(["League Points","Soma dos pontos do snap","Partidas Totais"],axis=1)
-            snap=snap.merge(snap1,how="left",on="Nick")
-            column_names=["Nick","Ciclo 1","Ciclo 2","Partidas Totais"]
-            snap=snap.reindex(columns=column_names)
-            
-            parcial=parcial[["Nick","League Points","Jogos Totais"]]
-            snap=snap.merge(parcial,how="left",on="Nick")
-            snap["Partidas Totais no snap"]=snap["Jogos Totais"]-snap["Partidas Totais"]
-            snap=snap.fillna(0)
-            snap.iloc[:,1:]=snap.iloc[:,1:].astype(int)
-            snap=snap.sort_values(by="League Points",ascending=False)
-            snap=snap.reset_index(drop=True)
-            snap.index=snap.index+1
-            
-           
-            snap.loc[1,"Ciclo 3"]=121
-            snap.loc[2,"Ciclo 3"]=109
-            snap.loc[3,"Ciclo 3"]=97
-            snap.loc[4,"Ciclo 3"]=85
-            snap.loc[5,"Ciclo 3"]=73
-            snap.loc[6,"Ciclo 3"]=66
-            snap.loc[7,"Ciclo 3"]=60
-            snap.loc[8,"Ciclo 3"]=54
-            snap.loc[9:25,"Ciclo 3"]=43
-            snap.loc[26:50,"Ciclo 3"]=31
-            snap.loc[51:100,"Ciclo 3"]=19
-            snap.loc[101:150,"Ciclo 3"]=7
-            snap["Soma dos pontos do snap"]= snap.loc[:,["Ciclo 1","Ciclo 2","Ciclo 3"]].sum(axis=1)
-            column_names=["Nick","Ciclo 1","Ciclo 2","Ciclo 3","Partidas Totais no snap","Soma dos pontos do snap"]
-            snap=snap.reindex(columns=column_names)
-            snap.iloc[:,1:]=snap.iloc[:,1:].astype(int)
-            snap=snap.sort_values(by="Soma dos pontos do snap",ascending=False)
-            snap.reset_index(drop=True, inplace=True)
-            snap.index=snap.index+1
-            
-            
+    try:
+        if snapi:
+                snap3=pd.read_csv("snap3.3.csv",index_col=0)
 
-            st.write(snap[snap["Nick"]==pesquisa])
-            st.write(snap)
+                snap3=snap3.merge(parcial,how="left",on="Nick")
+                # st.write(snap3)
+                snap3["Partidas Totais no snap"]=abs(snap3["Jogos Totais"]-snap3["Partidas Totais"])
+                snap3.sort_values(by="League Points",ascending=False,inplace=True)
+                snap3=snap3.fillna(0)
+                # st.write(snap3)
+                column_names=["Nick","Ciclo 1","Ciclo 2","Ciclo 3","Partidas Totais no snap","Soma dos pontos do snap"]
+                snap3=snap3[column_names]
+                # st.write(snap3)
+                snap3=snap3.fillna(0)
 
-    # except:
-    #     pass
+                snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
+                snap3.reset_index(inplace=True,drop=True)
+                # st.write(snap3)
+                snap3.index=snap3.index+1
+                snap3.loc[1,"Ciclo 4"]=133
+                snap3.loc[2,"Ciclo 4"]=120
+                snap3.loc[3,"Ciclo 4"]=106
+                snap3.loc[4,"Ciclo 4"]=93
+                snap3.loc[5,"Ciclo 4"]=80
+                snap3.loc[6,"Ciclo 4"]=73
+                snap3.loc[7,"Ciclo 4"]=66
+                snap3.loc[8,"Ciclo 4"]=60
+                snap3.loc[9:25,"Ciclo 4"]=47
+                snap3.loc[26:50,"Ciclo 4"]=34
+                snap3.loc[51:100,"Ciclo 4"]=20
+                snap3.loc[101:150,"Ciclo 4"]=8
+                snap3["Soma dos pontos do snap"]= snap3.loc[:,["Ciclo 1","Ciclo 2","Ciclo 3","Ciclo 4"]].sum(axis=1)
+                column_names=["Nick","Ciclo 1","Ciclo 2","Ciclo 3","Ciclo 4","Partidas Totais no snap","Soma dos pontos do snap"]
+                snap3=snap3.reindex(columns=column_names)
+                snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
+                snap3=snap3.sort_values(by="Soma dos pontos do snap",ascending=False)
+                snap3.reset_index(drop=True, inplace=True)
+                snap3.index=snap3.index+1
+
+
+
+
+
+                st.write(snap3[snap3["Nick"]==pesquisa])
+                st.write(snap3)
+
+    except:
+        pass
 
     # t =  datetime.time(15,56,05)
     # st.write('O dia irá se atualizar na hora:', t)

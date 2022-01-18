@@ -159,8 +159,8 @@ def main ():
             snap3=pd.read_csv("snap3.3.csv",index_col=0)
 
             snap3=snap3.merge(parcial,how="left",on="Nick")
-            
-            snap3.iloc[:,1:-3]=snap3.iloc[:,1:-3].astype(int)
+            st.write(snap3)
+#             snap3.iloc[:,1:-3]=snap3.iloc[:,1:-3].astype(int)
             
             snap3["Partidas Totais no snap"]=abs(snap3["Jogos Totais_y"]-snap3["Partidas Totais_x"])
             

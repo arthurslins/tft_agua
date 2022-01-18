@@ -159,6 +159,7 @@ def main ():
             snap3=pd.read_csv("snap3.3.csv",index_col=0)
 
             snap3=snap3.merge(parcial,how="left",on="Nick")
+            st.write(snap3.iloc[:,1:2])
             st.write(snap3)
 #             snap3.iloc[:,1:-3]=snap3.iloc[:,1:-3].astype(int)
             

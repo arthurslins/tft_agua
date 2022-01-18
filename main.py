@@ -154,10 +154,10 @@ def main ():
 
        
     snapi= st.checkbox("Snapshots")
-    try:
-        if snapi:
+#     try:
+    if snapi:
             snap3=pd.read_csv("snap3.3.csv",index_col=0)
-                    
+
             snap3=snap3.merge(parcial,how="left",on="Nick")
             # st.write(snap3)
             snap3["Partidas Totais no snap"]=abs(snap3["Jogos Totais"]-snap3["Partidas Totais"])
@@ -168,7 +168,7 @@ def main ():
             snap3=snap3[column_names]
             # st.write(snap3)
             snap3=snap3.fillna(0)
-            
+
             snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
             snap3.reset_index(inplace=True,drop=True)
             # st.write(snap3)
@@ -199,8 +199,8 @@ def main ():
 
             st.write(snap3[snap3["Nick"]==pesquisa])
             st.write(snap3)
-    except:
-        pass
+#     except:
+#         pass
 
     # t =  datetime.time(15,56,05)
     # st.write('O dia irá se atualizar na hora:', t)

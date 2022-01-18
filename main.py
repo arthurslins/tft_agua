@@ -161,7 +161,7 @@ def main ():
             snap3=snap3.merge(parcial,how="left",on="Nick")
             snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
             st.write(snap3)
-            snap4["Partidas Totais no snap"]=abs(snap3["Jogos Totais_y"]-snap3["Partidas Totais_x"])
+            snap3["Partidas Totais no snap"]=abs(snap3["Jogos Totais_y"]-snap3["Partidas Totais_x"])
             
 #             snap3.sort_values(by="League Points",ascending=False,inplace=True)
 #             snap3=snap3.fillna(0)

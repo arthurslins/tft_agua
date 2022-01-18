@@ -160,7 +160,7 @@ def main ():
 
             snap3=snap3.merge(parcial,how="left",on="Nick")
             
-            snap3.iloc[:,1:-2]=snap3.iloc[:,1:-2].astype(int)
+            snap3.iloc[:,1:-3]=snap3.iloc[:,1:-3].astype(int)
             
             snap3["Partidas Totais no snap"]=abs(snap3["Jogos Totais_y"]-snap3["Partidas Totais_x"])
             

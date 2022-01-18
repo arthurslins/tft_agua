@@ -159,8 +159,10 @@ def main ():
             snap3=pd.read_csv("snap3.3.csv",index_col=0)
 
             snap3=snap3.merge(parcial,how="left",on="Nick")
+            snap4=snap3.merge(parcial,how="left",on="Nick")
             st.write(snap3)
-            snap3["Partidas Totais no snap1"]=abs(snap3["Jogos Totais_y"]-snap3["Partidas Totais_x"])
+            snap4["Partidas Totais no snap"]=abs(snap3["Jogos Totais_y"]-snap3["Partidas Totais_x"])
+            st.write(snap4)
 #             snap3.sort_values(by="League Points",ascending=False,inplace=True)
 #             snap3=snap3.fillna(0)
 #             # st.write(snap3)

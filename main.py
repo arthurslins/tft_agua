@@ -281,7 +281,7 @@ def main ():
     with open('current_time.txt',"r") as f:
         current_time = f.read()
     current_time=current_time.split("=")[-1]
-    st.sidebar.write(f"The program was used {count} times today")
+    # st.sidebar.write(f"The program was used {count} times today")
     st.sidebar.write("The time this program was reset was :",current_time,"Brazil/East")   
     # if st.button("Atualizar o dia"):
     #     senha= st.number_input("Insira a senha")

@@ -12,12 +12,12 @@ tz = pytz.timezone("Brazil/East")
 # def increment_counter(increment_value=0):
 #     st.session_state.count += increment_value
 
-st.sidebar.header("tft_region_analitycs")
+st.sidebar.header("TFT Água")
 st.sidebar.image("https://i2.wp.com/gamehall.com.br/wp-content/uploads/2020/03/teamfight-tactics.jpg?fit=1920%2C1080&ssl=1", use_column_width=True)
 pesquisa = st.sidebar.text_input("Input your nick for search")
 pd.set_option('display.max_colwidth', -1)
 
-st.header ("Team fight tatics region analitycs")
+st.header ("Team fight tatics água")
 info= st.checkbox("Information")
 
 if info:

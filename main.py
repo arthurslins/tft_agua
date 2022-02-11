@@ -199,39 +199,58 @@ def main ():
                 st.write(parcial[parcial["Nick"]==pesquisa])
                 
                 st.write(parcial, unsafe_allow_html=True)
-                snap3=pd.read_csv("snap3.3.csv",index_col=0)
-                        
-                snap3=snap3.merge(parcial,how="left",on="Nick")
-                # st.write(snap3)
-                snap3["Total games in snap"]=abs(snap3["Daily Games_x"]-snap3["Total Matches"])
-                snap3.sort_values(by="League Points",ascending=False,inplace=True)
-                snap3=snap3.fillna(0)
-                # st.write(snap3)
-                column_names=["Nick","Cycle 1","Cycle 2","Cycle 3","Total games in snap","Sum of snapshot points"]
-                snap3=snap3[column_names]
-                # st.write(snap3)
-                snap3=snap3.fillna(0)
                 
-                snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
-                snap3.reset_index(inplace=True,drop=True)
+                
+                # snap3=pd.read_csv("snap3.3.csv",index_col=0)
+                        
+                # snap3=snap3.merge(parcial,how="left",on="Nick")
+                # # st.write(snap3)
+                # snap3["Total games in snap"]=abs(snap3["Daily Games_x"]-snap3["Total Matches"])
+                # snap3.sort_values(by="League Points",ascending=False,inplace=True)
+                # snap3=snap3.fillna(0)
+                # # st.write(snap3)
+                # column_names=["Nick","Cycle 1","Cycle 2","Cycle 3","Total games in snap","Sum of snapshot points"]
+                # snap3=snap3[column_names]
+                # # st.write(snap3)
+                # snap3=snap3.fillna(0)
+                
+                # snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
+                # snap3.reset_index(inplace=True,drop=True)
                 # st.write(snap3)
+                
+                snap3=pd.read_csv("snap_riot.csv",delimiter=";",header=None,names=["z","Nick","Cycle 1","Cycle 2","Cycle 3","Cycle 4","Total"])
+                snap3.drop(["z","Total"],axis=1,inplace=True)
+                snap3.index+=1
+                snap3=snap3.merge(parcial,how="left",on="Nick")
+                
+                snap3.drop(["Daily League Points","Daily Games","Total Matches","lolchess","mobalytics"],axis=1,inplace=True)
+
+                snap3=snap3.sort_values(by="League Points",ascending=False)
+                snap3.reset_index(drop=True, inplace=True)
                 snap3.index=snap3.index+1
-                snap3.loc[1,"Cycle 4"]=133
-                snap3.loc[2,"Cycle 4"]=120
-                snap3.loc[3,"Cycle 4"]=106
-                snap3.loc[4,"Cycle 4"]=93
-                snap3.loc[5,"Cycle 4"]=80
-                snap3.loc[6,"Cycle 4"]=73
-                snap3.loc[7,"Cycle 4"]=66
-                snap3.loc[8,"Cycle 4"]=60
-                snap3.loc[9:25,"Cycle 4"]=47
-                snap3.loc[26:50,"Cycle 4"]=34
-                snap3.loc[51:100,"Cycle 4"]=20
-                snap3.loc[101:150,"Cycle 4"]=8
-                snap3["Sum of snapshot points"]= snap3.loc[:,["Cycle 1","Cycle 2","Cycle 3","Cycle 4"]].sum(axis=1)
-                column_names=["Nick","Cycle 1","Cycle 2","Cycle 3","Cycle 4","Total games in snap","Sum of snapshot points"]
+                # st.write(snap3)
+                snap3.loc[1,"Cycle 5"]=146
+                snap3.loc[2,"Cycle 5"]=132
+                snap3.loc[3,"Cycle 5"]=117
+                snap3.loc[4,"Cycle 5"]=102
+                snap3.loc[5,"Cycle 5"]=88
+                snap3.loc[6,"Cycle 5"]=80
+                snap3.loc[7,"Cycle 5"]=73
+                snap3.loc[8,"Cycle 5"]=66
+                snap3.loc[9:25,"Cycle 5"]=51
+                snap3.loc[26:50,"Cycle 5"]=37
+                snap3.loc[51:100,"Cycle 5"]=22
+                snap3.loc[101:150,"Cycle 5"]=9
+                snap3.drop("League Points",axis=1,inplace=True)
+                snap3["Sum of snapshot points"]= snap3.loc[:,["Cycle 1","Cycle 2","Cycle 3","Cycle 4","Cycle 5"]].sum(axis=1)
+                # column_names=["Nick","Cycle 1","Cycle 2","Cycle 3","Cycle 4","Total games in snap","Sum of snapshot points"]
+                column_names=["Nick","Cycle 1","Cycle 2","Cycle 3","Cycle 4","Cycle 5","Sum of snapshot points"]
                 snap3=snap3.reindex(columns=column_names)
+                snap3=snap3.fillna(0)
                 snap3.iloc[:,1:]=snap3.iloc[:,1:].astype(int)
+                
+                
+                
                 snap3=snap3.sort_values(by="Sum of snapshot points",ascending=False)
                 snap3.reset_index(drop=True, inplace=True)
                 snap3.index=snap3.index+1

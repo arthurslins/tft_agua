@@ -268,6 +268,7 @@ def main ():
     if qualify:
         if server =="BR1":
             qualify_points=pd.read_csv("qualify_t.csv")
+            qualify_points.index=+1
             st.write(qualify_points)
         else:
             pass

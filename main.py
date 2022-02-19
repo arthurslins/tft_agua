@@ -222,26 +222,40 @@ def main ():
                 snap3.drop(["Unnamed: 0"],axis=1,inplace=True)
                 # st.write(snap3)
                 snap3.index+=1
-                snap3=snap3.merge(parcial,how="left",on="Nick")
+                # snap3=snap3.merge(parcial,how="left",on="Nick")
+                # st.write(parcial)
                 
-                snap3.drop(["Daily League Points","Daily Games","Total Matches","lolchess","mobalytics"],axis=1,inplace=True)
-
-                snap3=snap3.sort_values(by="League Points",ascending=False)
+                # snap3.drop(["Daily League Points","Daily Games","Total Matches","lolchess","mobalytics"],axis=1,inplace=True)
+                # snap3.fillna(0,inplace=True)
+                # snap3=snap3.sort_values(by="League Points",ascending=False)
+                parcial=parcial.sort_values(by="League Points",ascending=False)
+                parcial.reset_index(inplace=True,drop=True)
+                parcial.index=parcial.index+1
+               
                 snap3.reset_index(drop=True, inplace=True)
                 snap3.index=snap3.index+1
+                
+                
+                parcial.loc[1,"Cycle 6"]=100
+                
+                parcial.loc[2,"Cycle 6"]=90
+                parcial.loc[3,"Cycle 6"]=80
+                parcial.loc[4,"Cycle 6"]=70   
+                parcial.loc[5,"Cycle 6"]=60
+                parcial.loc[6,"Cycle 6"]=55
+                parcial.loc[7,"Cycle 6"]=50
+                parcial.loc[8,"Cycle 6"]=45
+                parcial.loc[9:25,"Cycle 6"]=35
+                parcial.loc[26:50,"Cycle 6"]=25
+                parcial.loc[51:100,"Cycle 6"]=15
+                parcial.loc[101:150,"Cycle 6"]=5
+                snap3=snap3.merge(parcial,how="left",on="Nick")
+                snap3.drop(["Daily League Points","Daily Games","Total Matches","lolchess","mobalytics"],axis=1,inplace=True)
+                snap3.fillna(0,inplace=True)
                 # st.write(snap3)
-                snap3.loc[1,"Cycle 6"]=100
-                snap3.loc[2,"Cycle 6"]=90
-                snap3.loc[3,"Cycle 6"]=80
-                snap3.loc[4,"Cycle 6"]=70   
-                snap3.loc[5,"Cycle 6"]=60
-                snap3.loc[6,"Cycle 6"]=55
-                snap3.loc[7,"Cycle 6"]=50
-                snap3.loc[8,"Cycle 6"]=45
-                snap3.loc[9:25,"Cycle 6"]=35
-                snap3.loc[26:50,"Cycle 6"]=25
-                snap3.loc[51:100,"Cycle 6"]=15
-                snap3.loc[101:150,"Cycle 6"]=5
+                
+               
+
                 snap3.drop("League Points",axis=1,inplace=True)
                 snap3["Sum of snapshot points"]= snap3.loc[:,["Cycle 1","Cycle 2","Cycle 3","Cycle 4","Cycle 5","Cycle 6"]].sum(axis=1)
                 # column_names=["Nick","Cycle 1","Cycle 2","Cycle 3","Cycle 4","Total games in snap","Sum of snapshot points"]

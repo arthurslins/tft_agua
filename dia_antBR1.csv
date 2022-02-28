@@ -1,24 +1,136 @@
 ,Nick,League Points,Daily Games,Games
-0,Eunucão,605,0,43
-1,BES ego illusion,666,0,54
-2,Koala Esbelto,530,0,46
-3,BEE Anklam,456,0,42
-4,BES Narkesh,445,0,42
-5,EMS NiihiI,400,0,53
-6,AI CE TOMA,400,0,31
-7,LeS Jhin,374,0,50
-8,FOUR Serask,368,0,62
-9,DragonzKilla,366,0,54
-10,BES Patr0ci,329,0,47
-11,Erith,317,0,33
-12,Perso TFT,307,0,38
-13,PedroBanana,261,0,47
-14,KDA Math108,236,0,27
-15,rayazao,233,0,32
-16,Guiczar,229,0,37
-17,BES Midor1ya,216,0,50
-18,BEE itachi,206,0,22
-19,LeS Neuro,202,0,40
-20,TKZ eSchool,181,0,70
-21,Y U N l E,68,0,29
-22,EMS Leon,35,0,52
+0,Koala Esbelto,1295,0,118
+1,EMS NiihiI,1200,0,120
+2,Eunucão,1172,0,84
+3,BES ego illusion,1169,0,107
+4,BEE itachi,1031,0,76
+5,AI CE TOMA,1021,0,95
+6,KDA Math108,1008,0,99
+7,F 5,977,0,89
+8,BES DobZ,963,0,98
+9,BES Patr0ci,886,0,129
+10,BES Toddy,871,0,51
+11,BES Midor1ya,777,0,163
+12,inc mplete,771,0,169
+13,KDA Sukesvs,769,0,115
+14,Tsuuzaki,733,0,113
+15,Steps Days,716,0,113
+16,BES Narkesh,694,0,92
+17,DragonzKilla,681,0,144
+18,KDA wenked,679,0,75
+19,d00pE,657,0,100
+20,FOUR Serask,638,0,138
+21,FOUR BieuL,627,0,86
+22,Perso TFT,614,0,99
+23,Phelpz13,573,0,76
+24,KDA AtHoM44,557,0,40
+25,É 0 GRÊMIO,531,0,60
+26,TMT Malvadao,526,0,115
+27,Guiczar,518,0,101
+28,KDA Constantine ,513,0,80
+29,BrunooPRO,507,0,83
+30,TFx Creitu,504,0,66
+31,Pàla,501,0,56
+32,Erith,498,0,82
+33,PedroBanana,476,0,141
+34,LeS Jhin,444,0,80
+35,FOUR SaintOz,558,0,81
+36,FOUR koke,531,0,48
+37,MJN Fobia,528,0,52
+38,BEE LucLuc,508,0,88
+39,Pjanix,501,0,97
+40,BES vipi,473,0,88
+41,Miguel Arkjow,468,0,51
+42,DETETIVE ALINE,454,0,61
+43,Sh0W,444,0,87
+44,BEE Anklam,440,0,78
+45,Gabymar10,420,0,85
+46,Kagerou,411,0,56
+47,KDA Oldjester,410,0,71
+48,TFT A12345,408,0,43
+49,PepeChill ,406,0,84
+50,LeS Neuro,406,0,70
+51,vMetangTTV,405,0,92
+52,MJN Suasion,401,0,84
+53,Faret,393,0,147
+54,GVidigal,390,0,27
+55,EMS Leon,390,0,167
+56,D Pazzini,388,0,82
+57,quavolino,388,0,68
+58,LeS Allanzim,386,0,83
+59,CPV JotaR777,371,0,92
+60,RD Bhaltamos,368,0,105
+61,Padrasto Tchola,360,0,36
+62,tremor123,356,0,66
+63,TwTv OgumexU,355,0,131
+64,Hayuke,349,0,82
+65,FOUR jeans lofi,348,0,218
+66,KrashS,344,0,57
+67,Artic100SomBRa,343,0,84
+68,zViic,343,0,153
+69,rayazao,335,0,70
+70,HR felipeeanjos,335,0,73
+71,KDA Kaos,334,0,88
+72,The Black Rose k,334,0,107
+73,CPV Shinri,333,0,112
+74,Vulpi,331,0,109
+75,Flangonator,308,0,40
+76,Composteira,305,0,36
+77,TMT D Baji,303,0,65
+78,ll Sneaky ll,303,0,67
+79,TFx D klein,300,0,130
+80,Bixye,298,0,72
+81,BEE Soft,297,0,106
+82,blanka21,295,0,95
+83,AgrADC o JG,294,0,95
+84,Haxwei,294,0,52
+85,zaai,293,0,37
+86,Boi Gui,293,0,57
+87,LeS livinda,293,0,38
+88,colenghicolega,293,0,112
+89,BORGAOO,291,0,143
+90,EMS Zanaron,289,0,45
+91,Kleike,289,0,58
+92,b4zz,286,0,81
+93,shy shy shy shy,285,0,66
+94,Tjjuninho,282,0,56
+95,Ciulla,277,0,52
+96,EMS glass1,273,0,55
+97,juninhorgsj,257,0,29
+98,Irmão Koda,257,0,31
+99,Susge,254,0,68
+100,Apenas um MIojoo,250,0,134
+101,EMS Mulirox,248,0,49
+102,SparTAN100 ,244,0,55
+103,TFx Goiabeira,242,0,36
+104,Fer Back,241,0,95
+105,KDA Bizola,238,0,55
+106,Davvi AC,233,0,19
+107,MAIN ZeCksS,233,0,102
+108,Gzaga,231,0,83
+109,Edinaldo Safadão,231,0,84
+110,K0D4 TFT,231,0,115
+111,I love you so,230,0,122
+112,FOUR Madzi,228,0,65
+113,gato do jinnai,227,0,29
+114,Doctor Urashima,227,0,75
+115,MAIN muriloh07,226,0,67
+116,MJN Yato,225,0,136
+117,Batditos,223,0,109
+118,Chawa,219,0,52
+119,you yoda men,216,0,78
+120,RPS LucasVz,216,0,96
+121,Chöngas,215,0,43
+122,gabsreal,215,0,39
+123,MJN Majorana,214,0,77
+124,KDA Pikáchú,212,0,32
+125,RPGirl,212,0,59
+126,Tchozinho,211,0,97
+127,BEE NPC,209,0,46
+128,Dekolas,209,0,95
+129,BD Wed,206,0,71
+130,Pomba de Osasco,205,0,45
+131,EuAmoTibia,203,0,61
+132,memkzz,188,0,96
+133,Wiz kaihou,106,0,67
+134,kementaxe,62,0,90

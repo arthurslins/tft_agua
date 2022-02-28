@@ -218,7 +218,7 @@ def main ():
                 # snap3.reset_index(inplace=True,drop=True)
                 # st.write(snap3)
                 
-                snap3=pd.read_csv("snap4.csv",delimiter=",")
+                snap3=pd.read_csv("snap_f.csv",delimiter=",")
                 snap3.drop(["Unnamed: 0"],axis=1,inplace=True)
                 # st.write(snap3)
                 snap3.index+=1

@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import json
 import requests
-from IPython.display import HTML
 import datetime 
 import pytz
 tz = pytz.timezone("Brazil/East")
